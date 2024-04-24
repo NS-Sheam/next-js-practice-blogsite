@@ -20,6 +20,10 @@ const CreateBlogForm = () => {
   } = useForm<FormValues>();
 
   const onSubmit = async (data: FormValues) => {
+    const res = await fetch("http://localhost:5000/blogs");
+    const blogs = await res.json();
+    data.id = JSON.stringify(blogs.length + 1);
+    data.total_likes = "100";
     console.log(data);
   };
 
@@ -31,7 +35,10 @@ const CreateBlogForm = () => {
 
       <div className="hero min-h-screen">
         <div className="card w-[50%] shadow-xl bg-base-100">
-          <form onSubmit={handleSubmit(onSubmit)} className="card-body">
+          <form
+            onSubmit={handleSubmit(onSubmit)}
+            className="card-body"
+          >
             <div className="form-control">
               <label className="label">
                 <span className="label-text">Title</span>
@@ -91,7 +98,10 @@ const CreateBlogForm = () => {
               />
             </div>
             <div className="form-control mt-6">
-              <button type="submit" className="btn btn-accent btn-outline">
+              <button
+                type="submit"
+                className="btn btn-accent btn-outline"
+              >
                 Post
               </button>
             </div>
