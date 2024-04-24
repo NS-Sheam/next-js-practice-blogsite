@@ -1,9 +1,9 @@
 export interface Blog {
-  id: number;
+  id: string;
   title: string;
   description: string;
   publish_date: string;
   author_name: string;
   blog_image: string;
-  total_likes: number;
+  total_likes: string;
 }
